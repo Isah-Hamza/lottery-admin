@@ -26,6 +26,15 @@ const Operator = () => {
 
   ]
 
+  const operatorOptions = [
+    { label:'BETKING', value:null},
+    { label:'1XBET', value:null},
+    { label:'BET NINJA', value:null},
+    { label:'BETFUSE', value:null},
+    { label:'FAST BET', value:null},
+    { label:'SURE ODDS', value:null},
+]
+
   const Paid = () => (
     <div className="w-[65px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
       Paid
@@ -289,7 +298,7 @@ const table_data_b = [
             <span>Select dates</span>
           </button>
         </div>
-        <Select className={'!txt-sm rounded-3xl min-w-[170px] !py-2'} placeholder={'Select Operator'}  />
+        <Select className={'!txt-sm rounded-3xl min-w-[170px] !py-2'} options={operatorOptions} placeholder={'Select Operator'}  />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mb-5">
         <div className="bg-[#5F891C] text-white p-4 rounded-lg">

@@ -9,7 +9,7 @@ import { IoLogOut } from "react-icons/io5";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import { PiUsersThree } from "react-icons/pi";
-import { CiRollingSuitcase } from "react-icons/ci";
+import { CiRollingSuitcase, CiSettings } from "react-icons/ci";
 import { PiArrowElbowDownRightThin } from "react-icons/pi";
 import logo from '../assets/images/nlc-logo.png';
 
@@ -103,26 +103,50 @@ const DashboardLayout = () => {
     navigate("/login");
   };
 
+  const adminModules = [
+    {
+      name: "Users",
+      route: "#",
+      icon: <RxDashboard />,
+      identifier: "users",
+      permission: "view_dashboard",
+    },
+    {
+      name: "Operators",
+      route: "#",
+      icon: <RxDashboard />,
+      identifier: "operators",
+      permission: "view_dashboard",
+    },
+    {
+      name: "Services",
+      route: "#",
+      icon: <RxDashboard />,
+      identifier: "services",
+      permission: "view_dashboard",
+    },
+  ]
+
   const dashboardItems = [
     {
       name: "Dashboard",
-      route: "/admin",
+      route: "/",
       icon: <RxDashboard />,
-      identifier: "admin",
+      identifier: "",
+      permission: "view_dashboard",
+    },
+    {
+      name: "Reports",
+      route: "/operators-report",
+      icon: <CiRollingSuitcase size={20} />,
+      identifier: "operators-report",
       permission: "view_dashboard",
     },
     {
       name: "Transactions",
-      route: "/admin-transactions",
+      route: "/transactions",
       icon: <HiOutlineLightBulb size={17} />,
-      identifier: "admin-transactions",
-      permission: "view_dashboard",
-    },
-    {
-      name: "Report by Operators",
-      route: "/operators-report",
-      icon: <CiRollingSuitcase size={20} />,
-      identifier: "operators-report",
+      identifier: "transactions",
       permission: "view_dashboard",
     },
     // {
@@ -373,16 +397,96 @@ const DashboardLayout = () => {
               </div>
             ))}
           </div>
+          {/* Admin module */}
+          <div className="mt-4 text-[13px] ">
+            <span className="text-base text-faint_black pl-2">Administrative Module</span>
+            <div className="relative z-0 mt-5">
+              {adminModules.map((item, idx) => (
+                <div key={idx}>
+                  <div
+                    onClick={() => handleNavigate(idx)}
+                    className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
+                      `
+                      // ${  activeTab == idx && "bg-[#1639301F] text-primary-green font-medium"  }
+                    }
+                    >
+                    <button
+                      onClick={
+                        item.children || !item.route
+                          ? null
+                          : () => navigate(item.route)
+                      }
+                      key={idx}
+                      className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
+                    >
+                      <span>{item.icon}</span>
+                      <span>{item.name}</span>
+                    </button>
+                    {item.children?.length ? <RxCaretDown size={20} /> : null}
+                              
+                  </div>
+                  {/* // ${item.children?.length && activeChildren != idx && '-mt-4'} */}
+                  <div
+                    className={`flex flex-col 
+                      ${item.children?.length && activeChildren == idx && "mb-5"}
+                      `}
+                  >
+                    {activeChildren == idx &&
+                      item.children &&
+                      item.children?.map((child, id) => (
+                        <div key={id} className="mb-5">
+                          <button
+                            key={id}
+                            className={`relative ml-6  flex gap-2 
+                              ${id == 0 && ""} ${id == child.length - 1 && "mb-5"}
+                              ${
+                                activeTabItem?.identifier == child?.identifier
+                                  ? "font-medium"
+                                  : "font-light"
+                              }`}
+                          >
+                            <span className="absolute -bottom-1.5 left-[1px] inline-block -ml-[5px] -mt-[3px]">
+                              <PiArrowElbowDownRightThin size={18} color="gray" />
+                            </span>
+                            <span
+                              className="pl-5 -mb-2 inline-block"
+                              onClick={() => {
+                                navigate(child.route);
+                                setActiveTabItem(child);
+                              }}
+                            >
+                              {" "}
+                              {child.name}
+                            </span>
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-auto">
+            {/* <button
+              onClick={logout}
+              className={`text-sm mt-auto text-left w-full mb-2 py-2.5 px-5 rounded-3xl flex items-center gap-3`}
+            >
+              <span>
+                <CiSettings size={20} className="" />
+              </span>
+              <span>Settings</span>
+            </button> */}
+            <button
+              onClick={logout}
+              className={`text-[orange] text-sm mt-auto text-left w-full mb-2 py-2.5 px-5 rounded-3xl flex items-center gap-3`}
+            >
+              <span>
+                <IoLogOut className="text-[orange]" />
+              </span>
+              <span>Logout</span>
+            </button>
 
-          <button
-            onClick={logout}
-            className={`text-[orange] text-sm mt-auto text-left w-full mb-2 py-2.5 px-5 rounded-3xl flex items-center gap-3`}
-          >
-            <span>
-              <IoLogOut className="text-[orange]" />
-            </span>
-            <span>Logout</span>
-          </button>
+          </div>
         </aside>
         <div className="flex-1">
           <header className="h-[70px] bg-white flex items-center px-4 sm:px-7 justify-between xl:justify-end gap-6">
