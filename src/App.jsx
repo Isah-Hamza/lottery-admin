@@ -32,7 +32,7 @@ function App() {
 
       <Route path='/' Component={AdminLayout} >
         <Route path='/dashboard' Component={Admin} />
-        <Route path='/transaction' Component={Transaction} />
+        <Route path='/transactions' Component={Transaction} />
         <Route path='/report' Component={Operator} />
       </Route>
 
