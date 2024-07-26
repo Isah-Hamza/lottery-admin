@@ -6,7 +6,9 @@ import asset from "../../../assets/images/asset.png";
 import jide from "../../../assets/images/jide.png";
 import CustomLineChart from "../../../components/Chart/LineChart";
 import download from '../../../assets/images/download.svg';
-import Input from '../../../components/Inputs'
+import Input from '../../../components/Inputs';
+import AdminLayout from '../../../layouts/AdminLayout'
+
 
 import { RxCaretDown, RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { FiEye } from "react-icons/fi";
@@ -272,7 +274,7 @@ const table_data_b = [
 
 
   return (
-    <div>  
+    <AdminLayout>  
       <div className="mb-10">
         <p className="text-xl font-semibold text-[#101828]" >Hi <span className="text-primary-light-green font-semibold" >Juma’ah</span> 👋, Wecome to NLRC</p>
         <p className="text-xs mt-1">Lorem ipsum dolor sit amet consectetur. Ultrices turpis amet et id.</p>
@@ -547,7 +549,7 @@ const table_data_b = [
                 </div>
             </div>
         </div>
-    </div>
+    </AdminLayout>
   );
 };
 

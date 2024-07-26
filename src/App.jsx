@@ -19,16 +19,21 @@ function App() {
   <BrowserRouter>
     <Routes>
       {/* <Route path='/' Component={Landing} /> */}
+      <Route path='/' Component={Admin} />
+      <Route path='/report' Component={Operator} />
+      <Route path='/transactions' Component={Transaction} />
       {/* <Route path='/' Component={DashboardLayout} >
         <Route path='' Component={Dashboard} />
         <Route path='home' Component={Dashboard} />
         <Route path='dashboard' Component={Dashboard} />
       </Route> */}
-      <Route path='/' Component={AdminLayout} >
+
+      {/* <Route path='/' Component={AdminLayout} >
         <Route path='/' Component={Admin} />
         <Route path='transactions' Component={Transaction} />
         <Route path='operators-report' Component={Operator} />
-      </Route>
+      </Route> */}
+
     </Routes>
   </BrowserRouter>
   )

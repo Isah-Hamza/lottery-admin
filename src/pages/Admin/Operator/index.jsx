@@ -14,6 +14,7 @@ import Select from "../../../components/Inputs/Select";
 import { BiCalendar, BiFolder, BiSearch } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 import invoice from '../../../assets/images/invoice.svg';
+import AdminLayout from '../../../layouts/AdminLayout'
 
 const Operator = () => {
   const [communities, setCommunities] = useState([]);
@@ -281,7 +282,7 @@ const table_data_b = [
 
 
   return (
-    <div>  
+    <AdminLayout>  
       <div className="mb-10">
         <p className="text-xl font-semibold text-[#101828]" >Hi <span className="text-primary-light-green font-semibold" >Juma’ah</span> 👋, Wecome to NLRC</p>
         <p className="text-xs mt-1">Lorem ipsum dolor sit amet consectetur. Ultrices turpis amet et id.</p>
@@ -553,7 +554,7 @@ const table_data_b = [
                 </div>
             </div>
         </div>
-    </div>
+    </AdminLayout>
   );
 };
 
