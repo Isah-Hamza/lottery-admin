@@ -18,7 +18,7 @@ function App() {
   // <Landing />
   <BrowserRouter>
     <Routes>
-      <Route path='/' Component={Landing} />
+      {/* <Route path='/' Component={Landing} /> */}
       {/* <Route path='/' Component={DashboardLayout} >
         <Route path='' Component={Dashboard} />
         <Route path='home' Component={Dashboard} />
