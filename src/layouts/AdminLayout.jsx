@@ -21,7 +21,7 @@ import {
 } from "../utils/Helper";
 import customToastComponent from "../components/Toast/customToast";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = () => {
   const settingsTabs = [
     {
       name: "Your profile",
@@ -100,7 +100,7 @@ const DashboardLayout = ({ children }) => {
     REMOVE_FROM_LOCALSTORAGE("partner");
     REMOVE_FROM_LOCALSTORAGE("community");
     REMOVE_FROM_LOCALSTORAGE("partner_staff_id");
-    navigate("/login");
+    navigate("/");
   };
 
   const adminModules = [
@@ -149,141 +149,12 @@ const DashboardLayout = ({ children }) => {
       identifier: "transactions",
       permission: "view_dashboard",
     },
-    // {
-    //   name: "Community Mgmt",
-    //   route: "/community-management",
-    //   icon: <PiUsersThree size={17} />,
-    //   identifier: "community-management",
-    //   permission: "manage_community",
-    //   children: [
-    //     {
-    //       name: "Community",
-    //       route: "/community-management",
-    //       permission: "view_community",
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: "Collection",
-    //   route: "/collection/service-charge",
-    //   icon: <CiRollingSuitcase size={17} />,
-    //   identifier: "collection",
-    //   permission: "manage_collection",
-    //   children: [
-    //     {
-    //       name: "Service Charge",
-    //       route: "/collection/service-charge",
-    //       identifier: "service-charge",
-    //       permission: "view_service_charge",
-    //     },
-    //     {
-    //       name: "Invoice",
-    //       route: "/collection/invoice",
-    //       identifier: "invoice",
-    //       permission: "view_invoice",
-    //     },
-    //     {
-    //       name: "Residents Payments",
-    //       route: "/collection/residents-payments",
-    //       identifier: "resident-payments",
-    //       permission: "view_residents_payments",
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: "Power Management",
-    //   route: "power-managemnent",
-    //   icon: <HiOutlineLightBulb size={17} />,
-    //   identifier: "power-management",
-    //   permission: "manage_collection",
-    //   children: [
-    //     {
-    //       name: "Meters",
-    //       route: "/power-management/meters",
-    //       identifier: "meters",
-    //       permission: "view_service_charge",
-    //     },
-    //     {
-    //       name: "Transactions",
-    //       route: "/power-management/transactions",
-    //       identifier: "transactions",
-    //       permission: "view_invoice",
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   name: 'Staff Mangmnt.',
-    //   route: '/dashboard',
-    //   icon: <RxDashboard />,
-    //   permission:'manage_staff',
-    // },
-    // {
-    //   name: 'Assets Mangmnt.',
-    //   route: '/dashboard',
-    //   icon: <RxDashboard />,
-    //   permission:'manage_assets',
-    // },
-
-    // {
-    //   name: "Security Mgmt",
-    //   route: "/security-management",
-    //   icon: <PiUsersThree size={17} />,
-    //   identifier: "security-management",
-    //   permission: "manage_security",
-    //   children: [
-    //     {
-    //       name: "Checkin history",
-    //       route: "/security-management",
-    //       permission: "view_security",
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   name: "Emergency Mgmt",
-    //   route: "/emergency-management",
-    //   icon: <PiUsersThree size={17} />,
-    //   identifier: "emergency-management",
-    //   permission: "manage_emergency",
-    //   children: [
-    //     {
-    //       name: "Emergency history",
-    //       route: "/emergency-management",
-    //       permission: "view_emergency",
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   name: "Maintenance Mgmt",
-    //   route: "/maintenance-management",
-    //   icon: <PiUsersThree size={17} />,
-    //   identifier: "maintenance-management",
-    //   permission: "manage_maintenance",
-    //   children: [
-    //     {
-    //       name: "work orders",
-    //       route: "/maintenance-management",
-    //       permission: "view_work_order",
-    //     },
-    //   ],
-    // },
-  ];
+  ]
 
   const filteredDashboardItems = filterItemsByPermissions(
     dashboardItems,
     authUserPermissions
   );
-
-  const addCommunity = () => {
-    navigate("/add-community");
-    setShowDropdown(false);
-  };
-
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   const handleNavigate = (idx) => {
     if (activeChildren == idx) setActiveChildren(-1);
@@ -321,8 +192,6 @@ const DashboardLayout = ({ children }) => {
     });
   }, [window.location.pathname]);
 
-
-  if (token) {
     return (
       <div className="flex h-screen bg-dashboard-bg overflow-x-hidden">
         <aside
@@ -540,14 +409,13 @@ const DashboardLayout = ({ children }) => {
               activeLink == "settings" && "!h-[calc(100vh-140px)]"
             }`}
           >
-            {/* <Outlet /> */}
-           {children}
+            <Outlet />
+           {/* {children} */}
           </main>
         </div>
         {/* {switching ? <LoadingModal /> : null} */}
       </div>
     );
-  }
 };
 
 export default DashboardLayout;

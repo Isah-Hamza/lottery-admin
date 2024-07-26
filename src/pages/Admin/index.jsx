@@ -268,7 +268,7 @@ const table_data_b = [
 
 
   return (
-    <AdminLayout>
+    <>
       <div>  
         <div className="mb-7">
           <p className="text-xl font-semibold text-[#101828]" >Hi <span className="text-primary-light-green font-semibold" >Juma’ah</span> 👋, Wecome to NLRC</p>
@@ -635,7 +635,7 @@ const table_data_b = [
               </div>
           </div>
       </div>
-    </AdminLayout>
+    </>
   );
 };
 
