@@ -110,6 +110,7 @@ const DashboardLayout = () => {
       icon: <RxDashboard />,
       identifier: "users",
       permission: "view_dashboard",
+      idx:3,
     },
     {
       name: "Operators",
@@ -117,6 +118,7 @@ const DashboardLayout = () => {
       icon: <RxDashboard />,
       identifier: "operators",
       permission: "view_dashboard",
+      idx:4,
     },
     {
       name: "Services",
@@ -124,23 +126,18 @@ const DashboardLayout = () => {
       icon: <RxDashboard />,
       identifier: "services",
       permission: "view_dashboard",
+      idx:5,
     },
   ]
 
-  const dashboardItems = [
-    {
-      name: "Dashboard",
-      route: "/",
-      icon: <RxDashboard />,
-      identifier: "",
-      permission: "view_dashboard",
-    },
+  const reportModules = [
     {
       name: "Reports",
       route: "/report",
       icon: <CiRollingSuitcase size={20} />,
       identifier: "report",
       permission: "view_dashboard",
+      idx:1,
     },
     {
       name: "Transactions",
@@ -148,7 +145,20 @@ const DashboardLayout = () => {
       icon: <HiOutlineLightBulb size={17} />,
       identifier: "transactions",
       permission: "view_dashboard",
+      idx:2,
     },
+  ]
+
+  const dashboardItems = [
+    {
+      name: "Dashboard",
+      route: "/dashboard",
+      icon: <RxDashboard />,
+      identifier: "/dashboard",
+      permission: "view_dashboard",
+      idx:0,
+    },
+
   ]
 
   const filteredDashboardItems = filterItemsByPermissions(
@@ -157,6 +167,8 @@ const DashboardLayout = () => {
   );
 
   const handleNavigate = (idx) => {
+    setActiveTab(idx);
+
     if (activeChildren == idx) setActiveChildren(-1);
     else setActiveChildren(idx);
   };
@@ -177,19 +189,27 @@ const DashboardLayout = () => {
     console.log(active_item);
 
     setActiveLink(active_item);
-    filteredDashboardItems.map((item, idx) => {
+    filteredDashboardItems.map((item) => {
       if (item.identifier === active_item) {
-        setActiveChildren(idx);
-        setActiveTab(idx);
+        setActiveChildren(item.idx);
+        setActiveTab(item.idx);
       }
     });
 
-    const active_setting_item = window.location.pathname.split("/")[2];
-    settingsTabs.map((item, idx) => {
-      if (item.id === active_setting_item) {
-        setActiveSetting(idx);
+    adminModules.map((item) => {
+      if (item.identifier === active_item) {
+        setActiveChildren(item.idx);
+        setActiveTab(item.idx);
       }
     });
+
+    reportModules.map((item) => {
+      if (item.identifier === active_item) {
+        setActiveChildren(item.idx);
+        setActiveTab(item.idx);
+      }
+    });
+
   }, [window.location.pathname]);
 
     return (
@@ -202,12 +222,12 @@ const DashboardLayout = () => {
             <img className="size-16" src={logo} alt="logo" />
           </div>
           <div className="mt-16 text-[13px] relative z-0">
-            {filteredDashboardItems.map((item, idx) => (
-              <div key={idx}>
+            {filteredDashboardItems.map((item) => (
+              <div key={item.idx}>
                 <div
-                  onClick={() => handleNavigate(idx)}
+                  onClick={() => handleNavigate(item.idx)}
                   className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 ${
-                    activeTab == idx &&
+                    activeTab == item.idx &&
                     "bg-[#1639301F] text-primary-green font-medium"
                   }`}
                 >
@@ -217,7 +237,7 @@ const DashboardLayout = () => {
                         ? null
                         : () => navigate(item.route)
                     }
-                    key={idx}
+                    key={item.idx}
                     className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
                   >
                     <span>{item.icon}</span>
@@ -227,7 +247,7 @@ const DashboardLayout = () => {
                             
                 </div>
                 {/* // ${item.children?.length && activeChildren != idx && '-mt-4'} */}
-                <div
+                {/* <div
                   className={`flex flex-col 
                     ${item.children?.length && activeChildren == idx && "mb-5"}
                     `}
@@ -262,21 +282,21 @@ const DashboardLayout = () => {
                         </button>
                       </div>
                     ))}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
-          {/* Admin module */}
+          {/* Reporting module */}
           <div className="mt-4 text-[13px] ">
-            <span className="text-base text-faint_black pl-2">Administrative Module</span>
+            <span className="text-base text-faint_black pl-2">Reporting Module</span>
             <div className="relative z-0 mt-5">
-              {adminModules.map((item, idx) => (
-                <div key={idx}>
+              {reportModules.map((item) => (
+                <div key={item.idx}>
                   <div
-                    onClick={() => handleNavigate(idx)}
+                    onClick={() => handleNavigate(item.idx)}
                     className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
+                      ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
                       `
-                      // ${  activeTab == idx && "bg-[#1639301F] text-primary-green font-medium"  }
                     }
                     >
                     <button
@@ -285,7 +305,7 @@ const DashboardLayout = () => {
                           ? null
                           : () => navigate(item.route)
                       }
-                      key={idx}
+                      key={item}
                       className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
                     >
                       <span>{item.icon}</span>
@@ -295,7 +315,7 @@ const DashboardLayout = () => {
                               
                   </div>
                   {/* // ${item.children?.length && activeChildren != idx && '-mt-4'} */}
-                  <div
+                  {/* <div
                     className={`flex flex-col 
                       ${item.children?.length && activeChildren == idx && "mb-5"}
                       `}
@@ -330,7 +350,76 @@ const DashboardLayout = () => {
                           </button>
                         </div>
                       ))}
+                  </div> */}
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Admin module */}
+          <div className="mt-4 text-[13px] ">
+            <span className="text-base text-faint_black pl-2">Administrative Module</span>
+            <div className="relative z-0 mt-5">
+              {adminModules.map((item) => (
+                <div key={item.idx}>
+                  <div
+                    onClick={() => handleNavigate(item.idx)}
+                    className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
+                      `
+                      // ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
+                    }
+                    >
+                    <button
+                      onClick={
+                        item.children || !item.route
+                          ? null
+                          : () => navigate(item.route)
+                      }
+                      key={item.idx}
+                      className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
+                    >
+                      <span>{item.icon}</span>
+                      <span>{item.name}</span>
+                    </button>
+                    {item.children?.length ? <RxCaretDown size={20} /> : null}
+                              
                   </div>
+                  {/* // ${item.children?.length && activeChildren != idx && '-mt-4'} */}
+                  {/* <div
+                    className={`flex flex-col 
+                      ${item.children?.length && activeChildren == idx && "mb-5"}
+                      `}
+                  >
+                    {activeChildren == idx &&
+                      item.children &&
+                      item.children?.map((child, id) => (
+                        <div key={id} className="mb-5">
+                          <button
+                            key={id}
+                            className={`relative ml-6  flex gap-2 
+                              ${id == 0 && ""} ${id == child.length - 1 && "mb-5"}
+                              ${
+                                activeTabItem?.identifier == child?.identifier
+                                  ? "font-medium"
+                                  : "font-light"
+                              }`}
+                          >
+                            <span className="absolute -bottom-1.5 left-[1px] inline-block -ml-[5px] -mt-[3px]">
+                              <PiArrowElbowDownRightThin size={18} color="gray" />
+                            </span>
+                            <span
+                              className="pl-5 -mb-2 inline-block"
+                              onClick={() => {
+                                navigate(child.route);
+                                setActiveTabItem(child);
+                              }}
+                            >
+                              {" "}
+                              {child.name}
+                            </span>
+                          </button>
+                        </div>
+                      ))}
+                  </div> */}
                 </div>
               ))}
             </div>
