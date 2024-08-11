@@ -11,6 +11,9 @@ import Admin from './pages/Admin'
 import Transaction from './pages/Admin/Transaction';
 import Operator from './pages/Admin/Operator';
 import Login from './pages/Login';
+import Subscriptions from './pages/Admin/Subscriptions';
+import ServiceOperators from './pages/Admin/ServiceOperators';
+import Services from './pages/Admin/Services';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,7 +36,10 @@ function App() {
       <Route path='/' Component={AdminLayout} >
         <Route path='/dashboard' Component={Admin} />
         <Route path='/transactions' Component={Transaction} />
+        <Route path='/subscriptions' Component={Subscriptions} />
         <Route path='/report' Component={Operator} />
+        <Route path='/operators' Component={ServiceOperators} />
+        <Route path='/services' Component={Services} />
       </Route>
 
     </Routes>

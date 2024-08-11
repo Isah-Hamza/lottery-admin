@@ -105,16 +105,16 @@ const DashboardLayout = () => {
 
   const adminModules = [
     {
-      name: "Users",
-      route: "#",
+      name: "Subscriptions",
+      route: "/subscriptions",
       icon: <RxDashboard />,
-      identifier: "users",
+      identifier: "subscriptions",
       permission: "view_dashboard",
       idx:3,
     },
     {
       name: "Operators",
-      route: "#",
+      route: "/operators",
       icon: <RxDashboard />,
       identifier: "operators",
       permission: "view_dashboard",
@@ -122,7 +122,7 @@ const DashboardLayout = () => {
     },
     {
       name: "Services",
-      route: "#",
+      route: "/services",
       icon: <RxDashboard />,
       identifier: "services",
       permission: "view_dashboard",
@@ -364,8 +364,8 @@ const DashboardLayout = () => {
                   <div
                     onClick={() => handleNavigate(item.idx)}
                     className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
+                      ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
                       `
-                      // ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
                     }
                     >
                     <button
