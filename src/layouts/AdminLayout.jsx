@@ -166,11 +166,16 @@ const DashboardLayout = () => {
     authUserPermissions
   );
 
-  const handleNavigate = (idx) => {
+  const handleNavigate = (item) => {
+    const idx = item.idx;
+    const route = item.route;
     setActiveTab(idx);
 
     if (activeChildren == idx) setActiveChildren(-1);
     else setActiveChildren(idx);
+
+    navigate(route);
+
   };
 
   const truncateText = (description, maxLength = 17) => {
@@ -225,18 +230,13 @@ const DashboardLayout = () => {
             {filteredDashboardItems.map((item) => (
               <div key={item.idx}>
                 <div
-                  onClick={() => handleNavigate(item.idx)}
+                  onClick={() => handleNavigate(item)}
                   className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 ${
                     activeTab == item.idx &&
                     "bg-[#1639301F] text-primary-green font-medium"
                   }`}
                 >
-                  <button
-                    onClick={
-                      item.children || !item.route
-                        ? null
-                        : () => navigate(item.route)
-                    }
+                  <button 
                     key={item.idx}
                     className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
                   >
@@ -293,18 +293,13 @@ const DashboardLayout = () => {
               {reportModules.map((item) => (
                 <div key={item.idx}>
                   <div
-                    onClick={() => handleNavigate(item.idx)}
+                    onClick={() => handleNavigate(item)}
                     className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
                       ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
                       `
                     }
                     >
-                    <button
-                      onClick={
-                        item.children || !item.route
-                          ? null
-                          : () => navigate(item.route)
-                      }
+                    <button 
                       key={item}
                       className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
                     >
@@ -362,18 +357,13 @@ const DashboardLayout = () => {
               {adminModules.map((item) => (
                 <div key={item.idx}>
                   <div
-                    onClick={() => handleNavigate(item.idx)}
+                    onClick={() => handleNavigate(item)}
                     className={`mb-3 cursor-pointer py-2.5 px-4 rounded-3xl flex items-center justify-between gap-2 
                       ${  activeTab == item.idx && "bg-[#1639301F] text-primary-green font-medium"  }
                       `
                     }
                     >
-                    <button
-                      onClick={
-                        item.children || !item.route
-                          ? null
-                          : () => navigate(item.route)
-                      }
+                    <button 
                       key={item.idx}
                       className={`whitespace-nowrap text-left w-full  flex items-center gap-3 `}
                     >

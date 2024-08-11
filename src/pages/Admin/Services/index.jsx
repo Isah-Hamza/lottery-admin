@@ -14,6 +14,7 @@ import { FiEye } from "react-icons/fi";
 import Select from "../../../components/Inputs/Select";
 import { BiFolder, BiSearch } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
+import { FaEye } from "react-icons/fa6";
 
 const Services = () => {
 
@@ -35,80 +36,92 @@ const [activeTab, setActiveTab] = useState(0);
 
 const table_header_a = [
     'Operator ID',
-    'Operator Name',
-    'Joined Date',
-    'Subscription Expiry Date',
-    'Defaulting',
+    'Service Name',
+    'Amount',
+    'Added Date',
+    'Validity Period',
     'Status',
+    ''
 ]
+
+// const serviceOptions = [
+//     { label:'SALE OF GOVERNMENT ASSETS', value:null},
+//     { label:'PROMOTIONAL FEE', value:null},
+//     { label:'VIOLATION FEE', value:null},
+//     { label:'REGULARISATIN FEE', value:null},
+//     { label:'APPROVAL IN PRINCIPLE FEE', value:null},
+//     { label:'TENDER FEE', value:null},
+//     { label:'ANNUAL SUBSCRIPTION FEE', value:null},
+//     { label:'LICENCES FEE', value:null},
+//     { label:'REFUND', value:null},
+// ]
+
 const table_data_a = [
      
     {
         invoice_no: '#1838942022',
-        operator: 'BET 9JA LIMITED',
-        start_date: '15/5/2024 ',
-        end_date: '15/6/2024 ',
-        defaulting:'Yes',
+        service: 'SALE OF GOVERNMENT ASSETS',
+        period: '1 YEAR',
+        date: 'Aug 12, 2024',
+        amount: '₦200,000',
         status: 'Active',
     },
     {
-        invoice_no: '#0244442061',
-        operator: 'SIMPLE BET & CO. LIMITED',
-        start_date: '15/5/2024 ',
-        end_date: '15/6/2024 ',
-        defaulting:'NO',
-        status: 'Active',
-    },
-    {
-        invoice_no: '#0244442061',
-        operator: 'FAST BET LLC',
-        start_date: '01/08/2020 ',
-        end_date: '02/09/2025 ',
-        defaulting:'NO',
+        invoice_no: '#1838942022',
+        service: 'PROMOTIONAL FEE',
+        period: '6 MONTHS',
+        date: 'Aug 12, 2024',
+        amount: '₦55,000',
         status: 'Inactive',
     },
     {
         invoice_no: '#1838942022',
-        operator: 'BET 9JA LIMITED',
-        start_date: '15/5/2024 ',
-        end_date: '15/6/2024 ',
-        defaulting:'Yes',
+        service: 'VIOLATION FEE',
+        period: '1 YEAR',
+        date: 'Aug 12, 2024',
+        amount: '₦200,000',
         status: 'Active',
     },
     {
-        invoice_no: '#0244442061',
-        operator: 'SIMPLE BET & CO. LIMITED',
-        start_date: '15/5/2024 ',
-        end_date: '15/6/2024 ',
-        defaulting:'NO',
+        invoice_no: '#1838942022',
+        service: 'REGULARISATIN FEE',
+        period: 'UNLIMITED',
+        date: 'Jan 01, 2000',
+        amount: '₦1,000,000',
         status: 'Active',
     },
     {
-        invoice_no: '#0244442061',
-        operator: 'FAST BET LLC',
-        start_date: '01/08/2020 ',
-        end_date: '02/09/2025 ',
-        defaulting:'NO',
-        status: 'Inactive',
-    },
-    {
-        invoice_no: '#0244442061',
-        operator: 'SIMPLE BET & CO. LIMITED',
-        start_date: '15/5/2024 ',
-        end_date: '15/6/2024 ',
-        defaulting:'NO',
+        invoice_no: '#1838942022',
+        service: 'APPROVAL IN PRINCIPLE FEE',
+        period: '1 YEAR',
+        date: 'Aug 12, 2024',
+        amount: '₦200,000',
         status: 'Active',
     },
     {
-        invoice_no: '#0244442061',
-        operator: 'FAST BET LLC',
-        start_date: '01/08/2020 ',
-        end_date: '02/09/2025 ',
-        defaulting:'NO',
-        status: 'Inactive',
+        invoice_no: '#1838942022',
+        service: 'TENDER FEE',
+        period: 'UNLIMITED',
+        date: 'Jan 01, 2000',
+        amount: '₦1,000,000',
+        status: 'Active',
     },
-
-
+    {
+        invoice_no: '#1838942022',
+        service: 'ANNUAL SUBSCRIPTION FEE',
+        period: '1 YEAR',
+        date: 'Aug 12, 2024',
+        amount: '₦200,000',
+        status: 'Active',
+    },
+    {
+        invoice_no: '#1838942022',
+        service: 'REFUND',
+        period: 'UNLIMITED',
+        date: 'Jan 01, 2000',
+        amount: '₦1,000,000',
+        status: 'Active',
+    },
 ]  
 
 
@@ -162,21 +175,21 @@ const table_data_a = [
                           {
                               table_data_a.map((item, idx) => (
                                   <tr className={`mt-5 pt-5 ${idx !== table_data_a.length - 1 && 'border-b'}`} key={idx}>
-                                      <td className={`flex items-center gap-2 py-5 pl-3 ${idx == 0 && 'pt-7'}`}>
+                                      <td className={`leading-[2rem] flex items-center gap-2 py-5 pl-3 ${idx == 0 && 'pt-7'}`}>
                                       {/* <img className="w-7" src={download} alt="download icon" /> */}
                                       {item.invoice_no}
                                       </td>
-                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.operator}</td>
-                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.start_date}</td>
-                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.end_date}</td>
-                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.defaulting}</td>
+                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.service}</td>
+                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.amount}</td>
+                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.date}</td>
+                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.period}</td>
                                       <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{statusess[item.status]}</td>
-                                      {/* <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
+                                      <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
                                           <button className='bg-primary-light-green/5 text-primary-light-green font-semibold p-2 rounded-3xl text-xs text-center flex items-center gap-1'>
-                                              <BiFolder size={15} />
-                                              <span>Download File</span>
+                                              <FaEye size={15} />
+                                              <span>View Details</span>
                                           </button>
-                                      </td> */}
+                                      </td>
                                   </tr>
                               ))
                           }
