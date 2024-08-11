@@ -132,7 +132,7 @@ const DashboardLayout = () => {
 
   const reportModules = [
     {
-      name: "Reports",
+      name: "Trnx. by Operators",
       route: "/report",
       icon: <CiRollingSuitcase size={20} />,
       identifier: "report",
@@ -140,7 +140,7 @@ const DashboardLayout = () => {
       idx:1,
     },
     {
-      name: "Transactions",
+      name: "All Transactions",
       route: "/transactions",
       icon: <HiOutlineLightBulb size={17} />,
       identifier: "transactions",
