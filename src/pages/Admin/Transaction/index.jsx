@@ -16,8 +16,10 @@ import Select from "../../../components/Inputs/Select";
 import { BiCalendar, BiFolder, BiSearch } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 import invoice from '../../../assets/images/invoice.svg';
+import { useNavigate } from "react-router-dom";
 
 const Transaction = () => {
+  const navigate= useNavigate();
   const [communities, setCommunities] = useState([]);
 
   const filters = [
@@ -291,7 +293,7 @@ const table_data_b = [
             <span>Select dates</span>
           </button>
         </div>
-        <button className="flex items-center gap-1 px-5 py-2 bg-primary-light-green text-white font-medium rounded-3xl text-sm">
+        <button onClick={() => navigate('/transactions/compare-operators')} className="flex items-center gap-1 px-5 py-2 bg-primary-light-green text-white font-medium rounded-3xl text-sm">
           <img src={invoice} alt="invoice" />
           <span>create new invoice</span>
         </button>

@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Subscriptions from './pages/Admin/Subscriptions';
 import ServiceOperators from './pages/Admin/ServiceOperators';
 import Services from './pages/Admin/Services';
+import CompareOperators from './pages/Admin/Operator/CompareOperator';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -40,6 +41,7 @@ function App() {
         <Route path='/report' Component={Operator} />
         <Route path='/operators' Component={ServiceOperators} />
         <Route path='/services' Component={Services} />
+        <Route path='/transactions/compare-operators' Component={CompareOperators} />
       </Route>
 
     </Routes>
