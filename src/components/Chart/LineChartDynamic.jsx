@@ -113,6 +113,8 @@ const data = [
 
 ];
 
+
+
 const CustomLineChart = ({ height, selected }) => {
 
     // render() {
@@ -120,9 +122,18 @@ const CustomLineChart = ({ height, selected }) => {
 
     const [selectedOptions, setSelectedOptions] = useState([]);
 
-    const handleSelectChange = (selected) => {
-        setSelectedOptions(selected);
-      };
+    const colors = [
+        '#3498db',
+        '#e74c3c',
+        '#2ecc71',
+        '#9b59b6',
+        '#f1c40f',
+        '#34495e',
+        '#1abc9c',
+        '#e67e22',
+        '#7f8c8d',
+        '#95a5a6'
+      ];
 
 
     useLayoutEffect(() => {
@@ -153,8 +164,8 @@ const CustomLineChart = ({ height, selected }) => {
                 {/* <Legend /> */}
 
                 {
-                    selected?.map(key => 
-                        <Line strokeWidth={2} dot={false} type="monotone" dataKey={key} stroke="#5F891C" />
+                    selected?.map((key,idx) => 
+                        <Line strokeWidth={2} dot={false} type="monotone" dataKey={key} stroke={colors[idx]} />
                     )
                 }
 

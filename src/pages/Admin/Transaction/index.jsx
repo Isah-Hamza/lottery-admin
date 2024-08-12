@@ -295,7 +295,7 @@ const table_data_b = [
         </div>
         <button onClick={() => navigate('/transactions/compare-operators')} className="flex items-center gap-1 px-5 py-2 bg-primary-light-green text-white font-medium rounded-3xl text-sm">
           <img src={invoice} alt="invoice" />
-          <span>create new invoice</span>
+          <span>View Performace By Operators</span>
         </button>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mb-5">

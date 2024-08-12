@@ -127,7 +127,7 @@ const toggleSelectedOperator = (item) => {
         </div> */}
         <div className="grid gap-5 min-h-20">
           <div className="bg-white rounded-xl p-4 sm:p-7">
-            <div className="flex items-center gap-10 justify-between mb-12">
+            <div className="flex items-center gap-10 justify-between mb-7">
               <p className="text-base font-medium text-faint-black">
                 Performance By Operators
               </p>
@@ -143,9 +143,9 @@ const toggleSelectedOperator = (item) => {
                 </span>
               </div>
             </div>
-              <div className="mb-5 flex w-fit border rounded overflow-hidden bg-white">
+              <div className="mb-5 flex gap-2 w-fit overflow-hidden bg-white">
                 {
-                  operatorOptions.map(item => <button onClick={() => toggleSelectedOperator(item)} className={`px-3 py-2 border-r ${ selectedOperators.indexOf(item) >= 0 && '!bg-[#dedede]'}`} key={item}>{item}</button>)
+                  operatorOptions.map(item => <button onClick={() => toggleSelectedOperator(item)} className={`px-3 py-2 border rounded-lg  text-sm ${ selectedOperators.indexOf(item) >= 0 && '!bg-[#1639301F] text-primary-green'}`} key={item}>{item}</button>)
                 }
             </div>
             <div className="mt-20 chart-parent my-5 h-60 grid place-content-center -ml-12 mb-12">
