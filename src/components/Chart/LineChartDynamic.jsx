@@ -92,24 +92,24 @@ const data = [
         'BETFUSE': 90,
         'FAST BET': 27,
     },
-    // {
-    //     name: 'May',
-    //     BETKING: 18,
-    //     '1XBET': 48,
-    //     'SURE ODDS': 48,
-    //     'BET NINJA': 21,
-    //     'BETFUSE': 21,
-    //     'FAST BET': 21,
-    // },
-    // {
-    //     name: 'Jun',
-    //     BETKING: 23,
-    //     '1XBET': 38,
-    //     'SURE ODDS': 38,
-    //     'BET NINJA': 25,
-    //     'BETFUSE': 25,
-    //     'FAST BET': 25,
-    // },
+    {
+        name: 'Aug',
+        BETKING: 18,
+        '1XBET': 48,
+        'SURE ODDS': 48,
+        'BET NINJA': 21,
+        'BETFUSE': 21,
+        'FAST BET': 21,
+    },
+    {
+        name: 'Sep',
+        BETKING: 23,
+        '1XBET': 38,
+        'SURE ODDS': 38,
+        'BET NINJA': 25,
+        'BETFUSE': 25,
+        'FAST BET': 25,
+    },
 
 ];
 
@@ -119,8 +119,6 @@ const CustomLineChart = ({ height, selected }) => {
 
     // render() {
     const [width, setWidth] = useState(300);
-
-    const [selectedOptions, setSelectedOptions] = useState([]);
 
     const colors = [
         '#3498db',
@@ -165,7 +163,7 @@ const CustomLineChart = ({ height, selected }) => {
 
                 {
                     selected?.map((key,idx) => 
-                        <Line strokeWidth={2} dot={false} type="monotone" dataKey={key} stroke={colors[idx]} />
+                        <Line key={idx} strokeWidth={2} dot={false} type="monotone" dataKey={key} stroke={colors[idx]} />
                     )
                 }
 
