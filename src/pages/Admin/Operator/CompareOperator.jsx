@@ -33,7 +33,7 @@ const statusess =  {
     'Inactive' : <Inactive />
 }
 
-const [selectedOperators, setSelectedOperators ]= useState(['BETKING']);
+const [selectedOperators, setSelectedOperators ]= useState(['BETKING','1XBET']);
 
 const operatorOptions = [
   'BETKING',
